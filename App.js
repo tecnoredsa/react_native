@@ -1,38 +1,53 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState,useEffect } from 'react';
-import { ActivityIndicator, FlatList, StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { StyleSheet, Text, View, Image } from 'react-native';
 
 export default function App() {
-  const datos = require('./assets/Lista.json');
-  const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then(response => response.json())
-      .then(data => {
-        setUsers(data)
-        setLoading(false)
-        //console.log(users);
-      })
-  }, []);
-
-
-  if (loading) {
-    return <View style={styles.carga}><Text>Cargando datos...</Text>
-    <ActivityIndicator size="large" color="#0000f"/>
-    </View>
-  }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.head}>Datos cargados</Text>
-      <ActivityIndicator size="large" color="#0000f"/>
-      <FlatList
-        data={users}
-        keyExtractor={item => String(item.id)}
-        renderItem={({ item }) => <Text style={styles.item}>Alumno:{item.name}</Text>}
-      />
+      <View style={styles.column1}>
+        <Image
+          style={styles.head}
+          source={require('./assets/tca.png')}
+        />
+
+        <Image
+          style={styles.head}
+          source={require('./assets/tpu.png')}
+        />
+
+
+        <Image
+          style={styles.head}
+          source={{ uri: 'https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/216.png' }}
+        />
+      </View>
+
+      <View style={styles.column2}>
+
+
+
+
+        <Image
+          style={styles.head}
+          source={require('./assets/tch.png')}
+        />
+
+        <Image
+          style={styles.head}
+          source={{ uri: 'https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/225.png' }}
+        />
+
+        <Image
+          style={styles.head}
+          source={{ uri: 'https://a.espncdn.com/i/teamlogos/soccer/500/223.png' }}
+        />
+      </View>
+
+
+
+
 
       <StatusBar style="auto" />
     </View >
@@ -45,24 +60,20 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 12,
-  },
-  item: {
-    backgroundColor: "#dfdf",
     padding: 20,
-    fontSize: 18,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
-    color: 'black',
+    flexDirection: 'row'
   },
   head: {
-    fontSize: 22,
-    color: 'blue',
+    height: 100,
+    width: 100,
   },
-  carga: {
-    flex: 1,
-    backgroundColor: '#dfd',
+  column1: {
     alignItems: 'center',
     justifyContent: 'center',
-  }
+  },
+  column2: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
 });
